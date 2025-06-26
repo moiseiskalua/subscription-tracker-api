@@ -24,7 +24,7 @@ const subscriptionSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['sports', 'news', 'enternainment', 'lifestyle', 'technology', 'finance', 'politics', 'other'],
+        enum: ['sports', 'news', 'entertainment', 'lifestyle', 'technology', 'finance', 'politics', 'other'],
         required: true,
     },
     paymentMethod: {
@@ -71,7 +71,7 @@ subscriptionSchema.pre('save', function (next) {
             yearly: 365,
         };
 
-        this.renewalDate = new Date(this.renewalDate.startDate);
+        this.renewalDate = new Date(this.startDate);
         this.renewalDate.setDate(this.renewalDate.getDate() + renewalPeriods[this.frequency])
     }
 
